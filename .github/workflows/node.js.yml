@@ -41,6 +41,7 @@ jobs:
           path: ‘${{ github.workspace }}/target/*.jar
       - name: Run Tests
         run: mvn test
+      - run: echo "🖥️ Backend test finish"
   Build-web-frontend:
     runs-on: ubuntu-latest
     defaults:
