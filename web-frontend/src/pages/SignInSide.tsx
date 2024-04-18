@@ -84,7 +84,7 @@ export default function SignInSide() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} aria-label={"login-form"}>
                             <TextField
                                 margin="normal"
                                 required
