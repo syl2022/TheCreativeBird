@@ -8,8 +8,6 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-  paths:
-    - web-frontend/**
 
 jobs:
   build:
@@ -27,6 +25,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        path: ./web-frontend/package.json
         cache: 'npm'
     - run: npm install
     - run: npm run build --if-present
