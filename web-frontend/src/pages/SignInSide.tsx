@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,8 +12,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ResponsiveAppBar from "./ResponsiveAppBar";
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import ResponsiveAppBar from "../components/ResponsiveAppBar";
+import {fetchUserData} from "../services/common.services";
+import {useNavigate} from "react-router-dom";
 
 function Copyright(props: any) {
     return (
@@ -31,19 +34,25 @@ function Copyright(props: any) {
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+    const [user, setUser]= useState("");
+    const navigate = useNavigate();
+    function f(){}
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get('email'),
             password: data.get('password'),
         });
+        var user = await fetchUserData(data.get('email')?.toString(), data.get('password')?.toString());
+        if (user != null) {
+            navigate("/home");
+        }
     };
-
     return (
         <ThemeProvider theme={defaultTheme}>
-            <ResponsiveAppBar></ResponsiveAppBar>
-            <Grid container component="main" >
+            <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
                     item
@@ -51,28 +60,21 @@ export default function SignInSide() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://cdn.logojoy.com/wp-content/uploads/2018/05/01125803/11115.png)',
+                        backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundSize: 'cover',
                         backgroundPosition: 'center',
+                        backgroundSize: 'cover'
                     }}
                 />
-                <Grid item xs={12} sm={8} md={5} sx={{
-                    height: '92vh',
-                }}>
-
-                    <Paper
-                        square
-                        elevation={6}
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                    <Box
                         sx={{
-                            my: 25,
+                            my: 8,
                             mx: 4,
-                            padding: 4,
                             display: 'flex',
                             flexDirection: 'column',
-                            justifyContent: 'center',
                             alignItems: 'center',
                         }}
                     >
@@ -129,7 +131,7 @@ export default function SignInSide() {
                             </Grid>
                             <Copyright sx={{ mt: 5 }} />
                         </Box>
-                    </Paper>
+                    </Box>
                 </Grid>
             </Grid>
         </ThemeProvider>
