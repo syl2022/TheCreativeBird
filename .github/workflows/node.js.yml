@@ -37,7 +37,7 @@ jobs:
       - name: Package
         run: mvn -Dmaven.test.skip=true package
       - name: Try it!
-        run: java -cp target/kotlin-maven-1.0-SNAPSHOT-jar-with-dependencies.jar hmc.backend.WebBackendApplication
+        run: java -cp target/kotlin-maven-0.0.1-SNAPSHOT-jar-with-dependencies.jar hmc.backend.WebBackendApplication
   Build-web-frontend:
     runs-on: ubuntu-latest
     defaults:
