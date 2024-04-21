@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import useSubmit from "./useSubmit";
+import useSubmit from "../hooks/useSubmit";
 import {useAlertContext} from "./alertContext";
 
 const LandingSection = () => {

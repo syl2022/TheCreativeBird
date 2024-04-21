@@ -16,19 +16,16 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import ResponsiveAppBar from "../components/ResponsiveAppBar";
 import {fetchUserData} from "../services/common.services";
 import {useNavigate} from "react-router-dom";
-
-function Copyright(props: any) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+// @ts-ignore
+import mainLogo from '../resources/bird.jpg';
+import {AdbIcon} from "../components/Icons";
+import {
+    ArrowCircleDownOutlined,
+    ArrowCircleRight, ArrowForward,
+    ArrowRight,
+    ArrowRight as ArrowSquareUpRightIcon
+} from "@mui/icons-material";
+import {Copyright} from "../components/Copyright";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -52,7 +49,8 @@ export default function SignInSide() {
     };
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
+
+            <Grid container component="main"  sx={{ height: '100vh'}}>
                 <CssBaseline />
                 <Grid
                     item
@@ -60,7 +58,7 @@ export default function SignInSide() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
+                        backgroundImage: `url(${mainLogo})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -68,7 +66,9 @@ export default function SignInSide() {
                         backgroundSize: 'cover'
                     }}
                 />
-                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{
+                    backgroundColor:  'white', /* For browsers that do not support gradients */
+                    backgroundImage: 'linear-gradient(to bottom right, white, white,#ACA588 )'}}>
                     <Box
                         sx={{
                             my: 8,
@@ -78,12 +78,21 @@ export default function SignInSide() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
-                        </Avatar>
+
+                            <AdbIcon />
+
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
+                        <Grid container>
+                            <Grid item xs>
+                            </Grid>
+                            <Grid item>
+                                <Link href="/home" >
+                                    {"Continue as Guest"} <ArrowForward />
+                                </Link>
+                            </Grid>
+                        </Grid>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} aria-label={"login-form"}>
                             <TextField
                                 margin="normal"

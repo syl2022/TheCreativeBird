@@ -27,8 +27,7 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
                 mb: 4,
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                backgroundImage: `url(${post.image})`,
+                backgroundImage: `url(${post.image})`
             }}
         >
             {/* Increase the priority of the hero background image */}
@@ -43,15 +42,7 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
                     color: 'black'
                 }}
             >
-                <Typography component="h4" variant="h4" color="inherit" gutterBottom align={"right"}>
-                    {post.title}
-                </Typography>
-                <Typography variant="h5" color="inherit" paragraph align={"right"}>
-                    {post.description}
-                </Typography>
-                <Link variant="subtitle1" href="#" align={"right"}>
-                    {post.linkText}
-                </Link>
+
             </Box>
 
         </Paper>

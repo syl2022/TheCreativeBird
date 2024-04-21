@@ -6,17 +6,21 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import XIcon from '@mui/icons-material/X';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import MainFeaturedPost from './MainFeaturedPost';
-import FeaturedPost from './FeaturedPost';
-import Sidebar from './Sidebar';
-import Footer from './Footer';
-import ResponsiveAppBar from "./components/ResponsiveAppBar";
+import MainFeaturedPost from '../components/MainFeaturedPost';
+import FeaturedPost from '../components/FeaturedPost';
+import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
+import ResponsiveAppBar from "../components/ResponsiveAppBar";
+import {SideNav} from "../components/SideNav";
+
+// @ts-ignore
+import mainBg from '../resources/mainBg.jpg';
 
 const mainFeaturedPost = {
-    title: 'Gift your loved once a Handcrafted piece from their heart.',
+    title: '',
     description:
         "",
-    image: 'https://img.freepik.com/premium-photo/yellow-background-with-baby-baby-s-toys_837518-2799.jpg',
+    image: `${mainBg}`,
     imageText: '',
     linkText: '',
 };
@@ -44,7 +48,7 @@ const featuredPosts = [
 const sidebar = {
     title: 'About',
     description:
-        'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+        'Are you creative and have a lot of ideas, but too lazy to implement your ideas. Or are you not at all into arts and craft but still want to give someone you love something "Artsy" because they love that. Or are you someone who just want to give someone something out of your heart but have no idea how to do that. Then you have come to the right place! ',
     archives: [
         { title: 'March 2020', url: '#' },
         { title: 'February 2020', url: '#' },
@@ -60,7 +64,6 @@ const sidebar = {
     ],
     social: [
         { name: 'GitHub', icon: GitHubIcon },
-        { name: 'X', icon: XIcon },
         { name: 'Facebook', icon: FacebookIcon },
     ],
 };
@@ -70,14 +73,17 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={defaultTheme} >
+            <SideNav></SideNav>
             <ResponsiveAppBar></ResponsiveAppBar>
-            <CssBaseline />s
             <Container maxWidth="lg" sx={{
-                padding: 4,
+                padding: 2,
+                paddingTop: 10,
+                position: 'relative'
             }}>
+
                 <main>
-                    <MainFeaturedPost post={mainFeaturedPost} />
+                    <MainFeaturedPost post={mainFeaturedPost}   />
                     <Grid container spacing={4}>
                         {featuredPosts.map((post) => (
                             <FeaturedPost key={post.title} post={post} />
@@ -95,7 +101,7 @@ export default function Dashboard() {
             </Container>
             <Footer
                 title="Motivation"
-                description="This Page is to help people gift their loved once a handcrafted piece from their heart!"
+                description="This Page is to help people gift their loved ones a handcrafted piece from their heart!"
             />
         </ThemeProvider>
     );
