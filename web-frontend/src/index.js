@@ -11,7 +11,7 @@ root.render(
     <React.StrictMode>
         <Auth0Provider domain={process.env.DOMAIN} clientId={process.env.CLIENT_ID}
                        authorizationParams={{
-                           redirect_uri: window.location.origin + "/home"
+                           redirect_uri: `${window.location.origin}/home`
                        }}>
             <BrowserRoutes></BrowserRoutes>
         </Auth0Provider>
