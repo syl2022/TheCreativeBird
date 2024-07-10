@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import {Copyright} from "./Copyright";
 
 interface FooterProps {
@@ -11,11 +10,11 @@ interface FooterProps {
 }
 
 export default function Footer(props: FooterProps) {
-    const { description, title } = props;
+    const {description, title} = props;
 
     return (
-        <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
-            <Container maxWidth="lg">
+        <Box component="footer" sx={{bgcolor: '#E6DED5', py: 6, width: "100%"}}>
+            <Container maxWidth="xl">
                 <Typography variant="h6" align="center" gutterBottom>
                     {title}
                 </Typography>
@@ -27,7 +26,7 @@ export default function Footer(props: FooterProps) {
                 >
                     {description}
                 </Typography>
-                <Copyright sx={{ mt: 5 }}/>
+                <Copyright sx={{mt: 5}}/>
             </Container>
         </Box>
     );

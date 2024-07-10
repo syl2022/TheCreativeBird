@@ -7,7 +7,7 @@ import img from "../resources/bird.jpg";
 
 export const AdbIcon=() => {
     return (
-                <div className="container " >
+                <div className="container logo" >
                     <img className={"logo"} src={mainLogo}  alt="fireSpot"/>
                 </div>
 

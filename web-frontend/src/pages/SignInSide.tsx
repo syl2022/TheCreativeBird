@@ -1,146 +1,66 @@
 import * as React from 'react';
-import {useState} from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
+import {useEffect} from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import ResponsiveAppBar from "../components/ResponsiveAppBar";
-import {fetchUserData} from "../services/common.services";
-import {useNavigate} from "react-router-dom";
 // @ts-ignore
 import mainLogo from '../resources/bird.jpg';
-import {AdbIcon} from "../components/Icons";
-import {
-    ArrowCircleDownOutlined,
-    ArrowCircleRight, ArrowForward,
-    ArrowRight,
-    ArrowRight as ArrowSquareUpRightIcon
-} from "@mui/icons-material";
-import {Copyright} from "../components/Copyright";
+import {Carousel, CarouselItem, CarouselRef} from "react-round-carousel";
+import LoginBox from "../components/LoginBox";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
 
-    const [user, setUser]= useState("");
-    const navigate = useNavigate();
-    function f(){}
-    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-        var user = await fetchUserData(data.get('email')?.toString(), data.get('password')?.toString());
-        if (user != null) {
-            navigate("/home");
-        }
-    };
+    useEffect(() => {
+        const interval = setInterval(() => carouselRef.current?.next(), 4000);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+    const carouselRef = React.createRef<CarouselRef>();
+    const items: CarouselItem[] = Array(20)
+        .fill('')
+        .map((_: string, index: number) => ({
+            alt: 'A random photo',
+            image: `https://picsum.photos/${210 + index}`,
+            content: (
+                <div></div>
+            )
+        }));
+
     return (
         <ThemeProvider theme={defaultTheme}>
 
-            <Grid container component="main"  sx={{ height: '100vh'}}>
-                <CssBaseline />
+            <Grid container component="main" sx={{height: '100vh'}}>
+                <CssBaseline/>
                 <Grid
                     item
                     xs={false}
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: `url(${mainLogo})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundColor: (t) =>
-                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover'
-                    }}
-                />
+                        overflow: "hidden",
+                        backgroundImage: "radial-gradient(#605143,#1c1814, black);",
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                    }}>
+
+                    <Carousel
+                        ref={carouselRef} items={items} itemWidth={800}
+                    />
+
+                </Grid>
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{
-                    backgroundColor:  'white', /* For browsers that do not support gradients */
-                    backgroundImage: 'linear-gradient(to bottom right, white, white,#ACA588 )'}}>
-                    <Box
-                        sx={{
-                            my: 8,
-                            mx: 4,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-
-                            <AdbIcon />
-
-                        <Typography component="h1" variant="h5">
-                            Sign in
-                        </Typography>
-                        <Grid container>
-                            <Grid item xs>
-                            </Grid>
-                            <Grid item>
-                                <Link href="/home" >
-                                    {"Continue as Guest"} <ArrowForward />
-                                </Link>
-                            </Grid>
-                        </Grid>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} aria-label={"login-form"}>
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                autoFocus
-                            />
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                            >
-                                Sign In
-                            </Button>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link href="#" variant="body2">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                            <Copyright sx={{ mt: 5 }} />
-                        </Box>
-                    </Box>
+                    backgroundColor: 'black',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center'/* For browsers that do not support gradients */
+                }}>
+                    <Paper><LoginBox></LoginBox></Paper>
                 </Grid>
             </Grid>
         </ThemeProvider>

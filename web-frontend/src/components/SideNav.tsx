@@ -4,15 +4,14 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { ArrowRight as ArrowSquareUpRightIcon } from '@mui/icons-material';
-import { CoffeeMakerTwoTone as CaretUpDownIcon } from '@mui/icons-material';
+import {ArrowRight as ArrowSquareUpRightIcon, HomeWork} from '@mui/icons-material';
 
-import type { NavItemConfig } from '../model/NavItem';
-import { paths } from '../model/path';
-import { isNavItemActive } from '../model/isNavItemActive';
+import type {NavItemConfig} from '../model/NavItem';
+import {paths} from '../model/path';
+import {isNavItemActive} from '../model/isNavItemActive';
 
-import { navItems } from '../model/config';
-import { navIcons } from '../model/navIcons';
+import {navItems} from '../model/config';
+import {navIcons} from '../model/navIcons';
 import {AdbIcon} from "../components/Icons";
 
 export function SideNav(): React.JSX.Element {
@@ -33,7 +32,7 @@ export function SideNav(): React.JSX.Element {
                 '--NavItem-icon-disabled-color': 'var(--mui-palette-neutral-600)',
                 bgcolor: '#605143',
                 color: 'whitesmoke',
-                display: { xs: 'none', lg: 'flex' },
+                display: {xs: 'none', lg: 'flex'},
                 flexDirection: 'column',
                 height: '100%',
                 left: 0,
@@ -43,12 +42,12 @@ export function SideNav(): React.JSX.Element {
                 top: 0,
                 width: 'var(--SideNav-width)',
                 zIndex: 'var(--SideNav-zIndex)',
-                '&::-webkit-scrollbar': { display: 'none' },
+                '&::-webkit-scrollbar': {display: 'none'},
             }}
         >
-            <Stack spacing={2} sx={{ p: 3 }}>
-                <Box component={'a'} href={paths.home} sx={{ display: 'inline-flex' }}>
-                    <AdbIcon />
+            <Stack spacing={2} sx={{p: 3}}>
+                <Box component={'a'} href={paths.home} sx={{display: 'inline-flex'}}>
+                    <AdbIcon/>
                 </Box>
                 <Box
                     sx={{
@@ -61,7 +60,7 @@ export function SideNav(): React.JSX.Element {
                         p: '4px 12px',
                     }}
                 >
-                    <Box sx={{ flex: '1 1 auto' }}>
+                    <Box sx={{flex: '1 1 auto'}}>
                         <Typography color="var(--mui-palette-neutral-400)" variant="body2">
                             Workspace
                         </Typography>
@@ -69,15 +68,15 @@ export function SideNav(): React.JSX.Element {
                             Shruti
                         </Typography>
                     </Box>
-                    <CaretUpDownIcon />
+                    <HomeWork/>
                 </Box>
             </Stack>
-            <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
-            <Box component="nav" sx={{ flex: '1 1 auto', p: '12px' }}>
-                {renderNavItems({ pathname, items: navItems })}
+            <Divider sx={{borderColor: 'var(--mui-palette-neutral-700)'}}/>
+            <Box component="nav" sx={{flex: '1 1 auto', p: '12px'}}>
+                {renderNavItems({pathname, items: navItems})}
             </Box>
-            <Divider sx={{ borderColor: 'var(--mui-palette-neutral-700)' }} />
-            <Stack spacing={2} sx={{ p: '12px' }}>
+            <Divider sx={{borderColor: 'var(--mui-palette-neutral-700)'}}/>
+            <Stack spacing={2} sx={{p: '12px'}}>
                 <div>
                     <Typography color="var(--mui-palette-neutral-100)" variant="subtitle2">
                         This page is work in progress!
@@ -86,15 +85,15 @@ export function SideNav(): React.JSX.Element {
                         Hope it will be able to serve the audience soon!
                     </Typography>
                 </div>
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <AdbIcon />
+                <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                    <AdbIcon/>
                 </Box>
                 <Button
                     component="a"
-                    endIcon={<ArrowSquareUpRightIcon />}
+                    endIcon={<ArrowSquareUpRightIcon/>}
                     fullWidth
                     href="#"
-                    sx={{ mt: 2 }}
+                    sx={{mt: 2}}
                     target="_blank"
                     variant="contained"
                 >
@@ -105,9 +104,9 @@ export function SideNav(): React.JSX.Element {
     );
 }
 
-function renderNavItems({ items = [], pathname }: { items?: NavItemConfig[]; pathname: string }): React.JSX.Element {
+function renderNavItems({items = [], pathname}: { items?: NavItemConfig[]; pathname: string }): React.JSX.Element {
     const children = items.reduce((acc: React.ReactNode[], curr: NavItemConfig): React.ReactNode[] => {
-        const { key, ...item } = curr;
+        const {key, ...item} = curr;
 
         acc.push(<NavItem key={key} pathname={pathname} {...item} />);
 
@@ -115,7 +114,7 @@ function renderNavItems({ items = [], pathname }: { items?: NavItemConfig[]; pat
     }, []);
 
     return (
-        <Stack component="ul" spacing={1} sx={{ listStyle: 'none', m: 0, p: 0 }}>
+        <Stack component="ul" spacing={1} sx={{listStyle: 'none', m: 0, p: 0}}>
             {children}
         </Stack>
     );
@@ -125,8 +124,8 @@ interface NavItemProps extends Omit<NavItemConfig, 'items'> {
     pathname: string;
 }
 
-function NavItem({ disabled, external, href, icon, matcher, pathname, title }: NavItemProps): React.JSX.Element {
-    const active = isNavItemActive({ disabled, external, href, matcher, pathname });
+export function NavItem({disabled, external, href, icon, matcher, pathname, title}: NavItemProps): React.JSX.Element {
+    const active = isNavItemActive({disabled, external, href, matcher, pathname});
     const Icon = icon ? navIcons[icon] : null;
 
     return (
@@ -139,7 +138,7 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
                         target: external ? '_blank' : undefined,
                         rel: external ? 'noreferrer' : undefined,
                     }
-                    : { role: 'button' })}
+                    : {role: 'button'})}
                 sx={{
                     alignItems: 'center',
                     borderRadius: 1,
@@ -157,22 +156,19 @@ function NavItem({ disabled, external, href, icon, matcher, pathname, title }: N
                         color: 'var(--NavItem-disabled-color)',
                         cursor: 'not-allowed',
                     }),
-                    ...(active && { bgcolor: 'var(--NavItem-active-background)', color: 'var(--NavItem-active-color)' }),
+                    ...(active && {bgcolor: 'var(--NavItem-active-background)', color: 'var(--NavItem-active-color)'}),
                 }}
             >
-                <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center', flex: '0 0 auto' }}>
+                <Box sx={{alignItems: 'center', display: 'flex', justifyContent: 'center', flex: '0 0 auto'}}>
                     {Icon ? (
                         <Icon
-
-
-
                         />
                     ) : null}
                 </Box>
-                <Box sx={{ flex: '1 1 auto' }}>
+                <Box sx={{flex: '1 1 auto'}}>
                     <Typography
                         component="span"
-                        sx={{ color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px' }}
+                        sx={{color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px'}}
                     >
                         {title}
                     </Typography>
