@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import SignInSide from "../pages/SignInSide";
 import Home from "../pages/Home";
 import Create from "../pages/Create";
+import React from "react";
 
 export default function BrowserRoutes()  {
     return (

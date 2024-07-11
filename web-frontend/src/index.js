@@ -3,18 +3,19 @@ import React from 'react';
 // @ts-ignore
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import BrowserRoutes from "./hooks/BrowserRoutes";
 import {Auth0Provider} from "@auth0/auth0-react";
+import BrowserRoutes from './hooks/BrowserRoutes';
 
+// @ts-ignore
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Auth0Provider domain={process.env.DOMAIN} clientId={process.env.CLIENT_ID}
-                       authorizationParams={{
-                           redirect_uri: `${window.location.origin}/home`
-                       }}>
+        {<Auth0Provider domain={process.env.REACT_APP_AUTH0_DOMAIN} clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+                             authorizationParams={{
+                                 redirect_uri: `${window.location.origin}/home`
+                             }}>
             <BrowserRoutes></BrowserRoutes>
-        </Auth0Provider>
+        </Auth0Provider>}
     </React.StrictMode>
 );
 
