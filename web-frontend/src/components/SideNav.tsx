@@ -18,7 +18,7 @@ export function SideNav(): React.JSX.Element {
     const pathname = "jhvkjdh";
 
     return (
-        <Box
+        <Box component="div"
             sx={{
                 '--SideNav-background': 'var(--mui-palette-neutral-950)',
                 '--SideNav-color': 'var(--mui-palette-common-white)',
@@ -49,7 +49,7 @@ export function SideNav(): React.JSX.Element {
                 <Box component={'a'} href={paths.home} sx={{display: 'inline-flex'}}>
                     <AdbIcon/>
                 </Box>
-                <Box
+                <Box component="div"
                     sx={{
                         alignItems: 'center',
                         backgroundColor: 'var(--mui-palette-neutral-950)',
@@ -60,7 +60,7 @@ export function SideNav(): React.JSX.Element {
                         p: '4px 12px',
                     }}
                 >
-                    <Box sx={{flex: '1 1 auto'}}>
+                    <Box component="div" sx={{flex: '1 1 auto'}} >
                         <Typography color="var(--mui-palette-neutral-400)" variant="body2">
                             Workspace
                         </Typography>
@@ -85,7 +85,7 @@ export function SideNav(): React.JSX.Element {
                         Hope it will be able to serve the audience soon!
                     </Typography>
                 </div>
-                <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                <Box sx={{display: 'flex', justifyContent: 'center'}} component="div">
                     <AdbIcon/>
                 </Box>
                 <Button
@@ -159,13 +159,13 @@ export function NavItem({disabled, external, href, icon, matcher, pathname, titl
                     ...(active && {bgcolor: 'var(--NavItem-active-background)', color: 'var(--NavItem-active-color)'}),
                 }}
             >
-                <Box sx={{alignItems: 'center', display: 'flex', justifyContent: 'center', flex: '0 0 auto'}}>
+                <Box component="div" sx={{alignItems: 'center', display: 'flex', justifyContent: 'center', flex: '0 0 auto'}}>
                     {Icon ? (
                         <Icon
                         />
                     ) : null}
                 </Box>
-                <Box sx={{flex: '1 1 auto'}}>
+                <Box component="div" sx={{flex: '1 1 auto'}}>
                     <Typography
                         component="span"
                         sx={{color: 'inherit', fontSize: '0.875rem', fontWeight: 500, lineHeight: '28px'}}

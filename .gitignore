@@ -1,3 +1,4 @@
 /.idea
 /web-frontend.iml
 /web-frontend/.env.development
+/web-frontend/.env

@@ -30,7 +30,7 @@ function LoginBox() {
         }
     }
     return (
-        <Box
+        <Box component="div"
             sx={{
                 my: 8,
                 mx: 4,
@@ -96,6 +96,7 @@ function LoginBox() {
                     fullWidth
                     variant="contained"
                     sx={{mt: 3, mb: 2}}
+                    className={'button-primary'}
                 >
                     Log In
                 </Button>

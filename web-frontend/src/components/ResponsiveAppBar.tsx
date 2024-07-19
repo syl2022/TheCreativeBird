@@ -43,7 +43,7 @@ function ResponsiveAppBar() {
                     The Creative Bird
                 </Typography>
 
-                <Box sx={{flexGrow: 0, margin: 10}}>
+                <Box component="div" sx={{flexGrow: 0, margin: 10}}>
                     <LogoutButton></LogoutButton>
 
                 </Box>
