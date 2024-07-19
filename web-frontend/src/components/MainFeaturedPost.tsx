@@ -33,7 +33,7 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
             {/* Increase the priority of the hero background image */}
             {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
 
-            <Box
+            <Box component='div'
                 sx={{
                     position: 'relative',
                     p: { xs: 3, md: 25 },
