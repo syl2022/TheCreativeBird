@@ -21,7 +21,7 @@ const defaultTheme = createTheme();
 export default function SignInSide() {
 const [cameraZoom, setCameraZoom]=useState(2.5);
     useEffect(() => {
-        if(window.innerWidth <= 760){alert()
+        if(window.innerWidth <= 760){
             setCameraZoom(3);
         }
         const interval = setInterval(() => carouselRef.current?.next(), 4000);
