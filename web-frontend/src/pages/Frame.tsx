@@ -16,27 +16,28 @@ function Frame({children}: FrameProps) {
     const defaultTheme = createTheme();
     return (
 
-            <ThemeProvider theme={defaultTheme}>
-                <ResponsiveAppBar></ResponsiveAppBar>
-                <Grid container md={12} >
-                <Grid item md={2}>
-                <SideNav></SideNav>
-                </Grid>
-                    <Grid item md={10}>
-                <Container maxWidth="xl" sx={{
-                    padding: 2,
-                    paddingTop: 10,
-                    position: 'relative',
-                    width: "100%"
-                }}>{children}</Container>
-                    </Grid>
+        <ThemeProvider theme={defaultTheme}>
 
+                <Grid container direction={'column'} sm={12}>
+                    <Grid item>
+                        <ResponsiveAppBar></ResponsiveAppBar>
+                    </Grid>
+                    <Grid item container direction={'row'}>
+                        <Grid item sm={4} md={3}>
+                            <SideNav></SideNav>
+                        </Grid>
+                        <Grid item sm={8} md={9} sx={{paddingTop: 10}}>
+                            <Container>{children}</Container>
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        <Footer
+                            title="Motivation"
+                            description="This Page is to help people gift their loved ones a handcrafted piece from their heart!"
+                        />
+                    </Grid>
                 </Grid>
-                <Footer
-                    title="Motivation"
-                    description="This Page is to help people gift their loved ones a handcrafted piece from their heart!"
-                />
-            </ThemeProvider>
+        </ThemeProvider>
 
     );
 }

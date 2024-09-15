@@ -7,7 +7,6 @@ import * as serviceWorker from "../ServiceWorker";*/
 
 const LogoutButton = () => {
     const {logout} = useAuth0();
-    const navigate = useNavigate();
 
     function logoutHandler() {/*
         serviceWorker.unregister();*/
@@ -17,9 +16,8 @@ const LogoutButton = () => {
 
     return (
         <Button
-            fullWidth
             variant="contained"
-            sx={{margin: 5}}
+            sx={{margin: 4}}
             onClick={() => logoutHandler()}
         >
             Logout

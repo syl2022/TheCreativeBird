@@ -6,9 +6,6 @@ import Typography from '@mui/material/Typography';
 import {AdbIcon} from "../components/Icons";
 import LogoutButton from "../api/logoutButton";
 
-const pages = [''];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 function ResponsiveAppBar() {
 
     return (
@@ -17,7 +14,7 @@ function ResponsiveAppBar() {
             <Toolbar disableGutters
                      sx={(theme) => ({
                          display: 'flex',
-                         placeContent: 'end space-between',
+                         justifyContent: 'space-between',
                          alignItems: 'center',
                          flexShrink: 0,
                          maxHeight: 40,
@@ -29,12 +26,10 @@ function ResponsiveAppBar() {
                     component="a"
                     href="#app-bar-with-responsive-menu"
                     sx={{
-                        mr: 2,
                         display: {xs: 'flex'},
                         fontFamily: 'cursive',
                         fontWeight: 700,
                         alignItems: 'center',
-                        letterSpacing: '.2rem',
                         color: 'inherit',
                         textDecoration: 'none',
                     }}
@@ -43,7 +38,7 @@ function ResponsiveAppBar() {
                     The Creative Bird
                 </Typography>
 
-                <Box component="div" sx={{flexGrow: 0, margin: 10}}>
+                <Box component="div">
                     <LogoutButton></LogoutButton>
 
                 </Box>
